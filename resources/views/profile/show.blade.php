@@ -30,6 +30,17 @@
                         @endif
                     </div>
                     @endif
+                    <form action="{{ route('block.user', $user->id) }}" method="POST">
+                        @csrf
+                        <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">ブロック</button>
+                    </form>
+
+                    <form action="{{ route('unblock.user', $user->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">ブロック解除</button>
+                    </form>
+
 
                     <!-- 🔽 フォローフォロワー数 -->
                     <p>following: {{$user->follows->count()}}</p>

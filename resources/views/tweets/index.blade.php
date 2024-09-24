@@ -11,10 +11,8 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <div class="mb-4">
-                        {{-- ページネーションのリンクを表示 --}}
-                        {{ $tweets->appends(request()->input())->links() }}
-                    </div>
+
+
                     @foreach ($tweets as $tweet)
 
                     <div class="mb-4 p-4 bg-gray-100 dark:bg-gray-700 rounded-lg">
@@ -39,10 +37,7 @@
                             <p class="text-gray-600 dark:text-gray-400 text-sm mt-2">コメント数: {{ $tweet->comments_count }}</p>
                     </div>
                     @endforeach
-                    <div class="mb-4">
-                        {{-- ページネーションのリンクを表示 --}}
-                        {{ $tweets->appends(request()->input())->links() }}
-                    </div>
+
                 </div>
             </div>
         </div>
