@@ -27,7 +27,12 @@
                     <x-nav-link :href="route('profile.show', auth()->user())" :active="request()->routeIs('profile.show')">
                         {{ __('マイページ') }}
                     </x-nav-link>
-
+                    <x-nav-link :href="route('tweets.ranking')" :active="request()->routeIs('tweets.ranking')">
+                        {{ __('ランキング') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('tweets.bookmark')" :active="request()->routeIs('tweets.bookmark')">
+                        {{ __('ブックマーク') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -95,6 +100,13 @@
             <x-responsive-nav-link :href="route('profile.show', auth()->user())" :active="request()->routeIs('profile.show')">
                 {{ __('マイページ') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('tweets.ranking')" :active="request()->routeIs('tweets.ranking')">
+                {{ __('ランキング') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('tweets.bookmark')" :active="request()->routeIs('tweets.bookmark')">
+                {{ __('ブックマーク') }}
+            </x-responsive-nav-link>
+
 
         </div>
 

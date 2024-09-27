@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Tweet;
 use Illuminate\Http\Request;
-use App\Models\UserBlock;
 
 class TweetController extends Controller
 {
@@ -13,13 +12,12 @@ class TweetController extends Controller
      */
     public function index()
     {
-        $blockedUserIds = UserBlock::where('user_id', auth()->id())->pluck('blocked_user_id');
+
         $tweets = Tweet::with(['user', 'liked'])->latest()->get();
         $tweets = Tweet::withCount('comments')->get();
         $tweets = Tweet::with('user', 'liked')
             ->latest()
             ->paginate(10);
-        $tweets = Tweet::whereNotIn('user_id', $blockedUserIds)->get();
         // dd($tweets);
         return view('tweets.index', compact('tweets'));
     }
@@ -105,5 +103,22 @@ class TweetController extends Controller
             ->paginate(10);
 
         return view('tweets.search', compact('tweets'));
+    }
+    public function ranking()
+    {
+        $tweets = Tweet::with(['user', 'liked'])
+            ->withCount('liked')
+            ->orderBy('liked_count', 'desc')
+            ->take(10)
+            ->get();
+
+        return view('tweets.ranking', compact('tweets'));
+    }
+    public function bookmarks()
+    {
+        // 現在ログインしているユーザーがいいねしたツイートを取得
+        $tweets = auth()->user()->likedTweets()->with('user')->paginate(10);
+
+        return view('tweets.bookmark', compact('tweets'));
     }
 }
