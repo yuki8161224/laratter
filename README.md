@@ -9,6 +9,7 @@
 
 ## 画面収録URL
 <video controls src="video1915151107-1.mp4" title="Title"></video>
+video1915151107-2.mp4
 
 ## 使い方
 - いいねランキング機能
